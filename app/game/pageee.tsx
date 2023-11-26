@@ -68,9 +68,7 @@ const GamePage = () => {
 		const score = Math.round(baseScore * multiplier)
 	}
 
-	return <>
-
-	</>
+	return <></>
 }
 
 export default GamePage
