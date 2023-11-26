@@ -63,13 +63,9 @@ const GamePage = () => {
 		setCurrentRound(currentRound + 1)
 	}
 
-	function handleCorrectAnswer() {
-		
-	}
+	function handleCorrectAnswer() {}
 
-	return <>
-
-	</>
+	return <></>
 }
 
 export default GamePage
