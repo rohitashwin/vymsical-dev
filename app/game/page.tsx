@@ -18,11 +18,6 @@ enum GameDifficulty {
 	Hard,
 }
 
-interface Timer {
-	start: number
-	end: number
-}
-
 const GamePage = () => {
 	const [allGames, setAllGames] = useState<Game[]>([])
 	const [filteredGames, setFilteredGames] = useState<Game[]>([])
@@ -30,7 +25,7 @@ const GamePage = () => {
 	const [currentRound, setCurrentRound] = useState(0)
 	const [currentScore, setCurrentScore] = useState(0)
 	const [currentLevel, setCurrentLevel] = useState(GameDifficulty.Easy)
-	const [timer, setTimer] = useState<Timer | null>(null)
+	const [time, setTime] = useState(0)
 
 	useEffect(() => {
 		fetch(API_URL)
@@ -64,7 +59,13 @@ const GamePage = () => {
 	}
 
 	function handleCorrectAnswer() {
-		
+		const delta = Date.now() - time
+		// if guessed within 5 seconds give 2x points
+		// if guessed within 10 seconds give 1.5x points
+		const multiplier = delta < 5000 ? 2 : delta < 10000 ? 1.5 : 1
+		// base score = 10 for easy, 20 for medium, 30 for hard
+		const baseScore = 10 + 10 * currentLevel
+		const score = Math.round(baseScore * multiplier)
 	}
 
 	return <>
