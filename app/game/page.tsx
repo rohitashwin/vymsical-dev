@@ -55,18 +55,18 @@ const GamePage = () => {
 		advanceRound()
 	}
 
-	// useEffect(() => {
-	// 	setTimeout(() => {
-	// 		setReady(true);
-	// 	}, 3000)
-	// }, []);
+	useEffect(() => {
+		setTimeout(() => {
+			setReady(true);
+		}, 4000)
+	}, []);
 
 	return (
 		<>
 			<Player>
-			{/* <ReactPlaceholder customPlaceholder={<LevelScreen level={currentLevel} />} ready={ready}> */}
-
-			{/* </ReactPlaceholder> */}
+				<ReactPlaceholder customPlaceholder={<LevelScreen level={currentLevel} />} ready={ready}>
+					<></>
+				</ReactPlaceholder>
 			</Player>
 		</>
 	)
