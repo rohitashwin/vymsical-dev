@@ -8,18 +8,15 @@ export default function Home() {
 		event.preventDefault();
 		const randIndex = Math.floor(Math.random() * 51);
 		console.log(randIndex);
-		fetch(`/api/songs/${randIndex}`, {
+		fetch(`/api/leaderboards`, {
 			method: 'GET',
 			headers: {
-				'Content-Type': 'audio/mpeg',
+				'Content-Type': 'application/json'
 			}
 		}).then((response) => {
-			return response.blob();
-		}).then((blob) => {
-			const url = URL.createObjectURL(blob);
-			console.log(url);
-			const audio = new Audio(url);
-			audio.play();
+			return response.json();
+		}).then((data) => {
+			console.log(data);
 		});
 	}
   return <>

@@ -1,0 +1,17 @@
+.root-container {
+	display: grid;
+	place-items: center;
+	height: 100vh;
+	width: 100vw;
+	background: radial-gradient(98.88% 50% at 50% 50%, #484848 0%, #1b1b1b 100%), #fff;
+}
+
+.player-container {
+	width: 450px;
+	height: 600px;
+	border: 3px solid #9a9999;
+	border-radius: 17px;
+	box-shadow: rgba(93, 93, 93, 0.4) 0px 30px 90px;
+	resize: both;
+	overflow: hidden;
+}
