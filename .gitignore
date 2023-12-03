@@ -34,7 +34,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# song files
-_songs/*.mp3
-_songs
