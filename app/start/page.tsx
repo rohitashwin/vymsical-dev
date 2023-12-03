@@ -13,14 +13,22 @@ const LoadingPlaceholder = ({ clickHandler }: { clickHandler: any }) => {
 			{/* create a form with a label, a name field, and a submit button; and the click handler should be called on submit */}
 			{/* pass the event and the name to the click handler */}
 			<div className={styles['go-container']}>
-				<form action="post" className={styles['name-form']} onSubmit={clickHandler}>
-					<label className={styles['name-form-label']} htmlFor="name">Enter Name:</label>
-					<input className={styles['name-form-field']} type="text" name="name" id="name" />
-					<button className={styles['name-form-button']} type='submit'>Start!</button>
+				<form action='post' className={styles['name-form']} onSubmit={clickHandler}>
+					<label className={styles['name-form-label']} htmlFor='name'>
+						Enter Name:
+					</label>
+					<input className={styles['name-form-field']} type='text' name='name' id='name' />
+					<button className={styles['name-form-button']} type='submit'>
+						Start!
+					</button>
 				</form>
 			</div>
 		</>
 	)
+}
+
+const AudioToggleContents = ({ bgsoundToggle }: any) => {
+	return <Image src='/assets/images/mute.svg' alt='audio-off' height={30} width={30} />
 }
 
 const StartPage = () => {
@@ -29,38 +37,51 @@ const StartPage = () => {
 	const [playbutton, setPlaybutton] = useState<HTMLAudioElement | null>(null)
 	const router = useRouter()
 
+	const audioToggleHandler = (event: any) => {
+		event.preventDefault()
+		if (bgsound?.paused) {
+			bgsound?.play()
+		} else {
+			bgsound?.pause()
+		}
+	}
+
 	function introClickHandler(event: any) {
 		event.preventDefault()
 		window.localStorage.setItem('name', event.target.name.value)
-		console.log('name: ', event.target.name.value);
+		console.log('name: ', event.target.name.value)
 		setReady(true)
 		// simultaneously fetch songs from /api/start and /api/playaudio endpoints
 		const fetchBG = fetch(`/api/bg`, {
 			method: 'GET',
 			headers: {
-				'Content-Type': 'audio/mpeg'
-			}
+				'Content-Type': 'audio/mpeg',
+			},
 		})
 		const fetchPBAudio = fetch(`/api/playaudio`, {
 			method: 'GET',
 			headers: {
-				'Content-Type': 'audio/wav'
-			}
+				'Content-Type': 'audio/wav',
+			},
 		})
-		fetchBG.then((response) => {
-			return response.blob()
-		}).then((data) => {
-			const audio = new Audio(URL.createObjectURL(data))
-			setBgsound(audio)
-			audio.loop = true
-			audio.play()
-		});
-		fetchPBAudio.then((response) => {
-			return response.blob()
-		}).then((data) => {
-			const audio = new Audio(URL.createObjectURL(data))
-			setPlaybutton(audio)
-		});
+		fetchBG
+			.then((response) => {
+				return response.blob()
+			})
+			.then((data) => {
+				const audio = new Audio(URL.createObjectURL(data))
+				setBgsound(audio)
+				audio.loop = true
+				audio.play()
+			})
+		fetchPBAudio
+			.then((response) => {
+				return response.blob()
+			})
+			.then((data) => {
+				const audio = new Audio(URL.createObjectURL(data))
+				setPlaybutton(audio)
+			})
 	}
 
 	function playSoundAndRedirect(event: any, url: string) {
@@ -74,7 +95,10 @@ const StartPage = () => {
 
 	return (
 		<>
-			<Player>
+			<Player
+				buttonContents={<AudioToggleContents bgsoundToggle={bgsound} />}
+				buttonHandler={audioToggleHandler}
+			>
 				<ReactPlaceholder
 					ready={ready}
 					customPlaceholder={<LoadingPlaceholder clickHandler={introClickHandler} />}
@@ -94,7 +118,12 @@ const StartPage = () => {
 								<h4 className={styles['header-subtitle']}>press play to start</h4>
 							</div>
 							<div className={styles['controls-container']}>
-								<button className={styles['link-button']} onClick={(event) => {playSoundAndRedirect(event, '/game')}}>
+								<button
+									className={styles['link-button']}
+									onClick={(event) => {
+										playSoundAndRedirect(event, '/game')
+									}}
+								>
 									<div className={styles['play-button-container']}>
 										<Image
 											className={styles['play-image']}
@@ -104,7 +133,12 @@ const StartPage = () => {
 										/>
 									</div>
 								</button>
-								<button className={styles['link-button']} onClick={(event) => {playSoundAndRedirect(event, '/leaderboards')}}>
+								<button
+									className={styles['link-button']}
+									onClick={(event) => {
+										playSoundAndRedirect(event, '/leaderboards')
+									}}
+								>
 									<div className={styles['leaderboard-button-container']}>
 										<Image
 											className={styles['leaderboard-image']}

@@ -35,6 +35,10 @@ const StartScreen = ({ clickHandler }: { clickHandler: any }) => {
 	)
 }
 
+const AudioToggleContents = ({ bgsoundToggle }: any) => {
+	return <Image src='/assets/images/mute.svg' alt='audio-off' height={30} width={30} />
+}
+
 interface Song {
 	Name: string
 	Artist: string
@@ -65,6 +69,15 @@ const GamePage = () => {
 	const [correctAudioElement, setCorrectAudioElement] = useState<HTMLAudioElement | null>(null)
 	const [wrongAudioElement, setWrongAudioElement] = useState<HTMLAudioElement | null>(null)
 	const router = useRouter()
+
+	const audioToggleHandler = (event: any) => {
+		event.preventDefault()
+		if (bgAudioElement?.paused) {
+			bgAudioElement?.play()
+		} else {
+			bgAudioElement?.pause()
+		}
+	}
 
 	function prefetchAudios() {
 		const fetchBG = fetch(`/api/bg`, {
@@ -210,6 +223,7 @@ const GamePage = () => {
 	}
 
 	function endGame() {
+		bgAudioElement?.pause()
 		window.localStorage.setItem('score', currentScore.toString())
 		router.push(END_LOCATION)
 	}
@@ -322,7 +336,10 @@ const GamePage = () => {
 
 	return (
 		<>
-			<Player>
+			<Player
+				buttonHandler={audioToggleHandler}
+				buttonContents={<AudioToggleContents bgsoundToggle={bgAudioElement} />}
+			>
 				<ReactPlaceholder
 					customPlaceholder={
 						<StartScreen
@@ -360,7 +377,13 @@ const GamePage = () => {
 									)
 								})}
 								<button className={styles['play-button']} onClick={handlePlayButtonClick}>
-									<Image className={styles['play-image']} src='/assets/images/play.svg' alt='play' width={40} height={40} />
+									<Image
+										className={styles['play-image']}
+										src='/assets/images/play.svg'
+										alt='play'
+										width={40}
+										height={40}
+									/>
 								</button>
 							</div>
 						</div>

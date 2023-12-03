@@ -1,6 +1,7 @@
 .root-container {
-	display: grid;
+	display: flex;
 	place-items: center;
+	justify-content: center;
 	height: 100vh;
 	width: 100vw;
 	background: radial-gradient(98.88% 50% at 50% 50%, #484848 0%, #1b1b1b 100%), #fff;
@@ -14,4 +15,28 @@
 	box-shadow: rgba(93, 93, 93, 0.4) 0px 30px 90px;
 	resize: both;
 	overflow: hidden;
+	margin-left: 70px;
+}
+
+.button-container {
+	height: 600px;
+	width: 70px;
+}
+
+.custom-button {
+	width: 50px;
+	height: 50px;
+	margin-left: 20px;
+	font-family: inherit;
+	background-color: rgba(255, 255, 255, 0.1);
+	border: 3px solid #9a9999;
+	border-radius: 10px;
+	position: relative;
+	display: grid;
+	place-items: center;
+}
+
+.custom-button:hover {
+	cursor: pointer;
+	border: 3px solid #fff;
 }
