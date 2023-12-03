@@ -17,21 +17,21 @@ const EndPage = () => {
 		const score = window.localStorage.getItem('score')
 		const leaderboardItem = { Name: name, Score: score }
 		// send the name and score to the server
-	// 	fetch(`/api/leaderboards`, {
-	// 		method: 'POST',
-	// 		headers: {
-	// 			'Content-Type': 'application/json',
-	// 		},
-	// 		body: JSON.stringify(leaderboardItem),
-	// 	}).then((response) => {
-	// 		console.log(response)
-	// 	})
+		fetch(`/api/leaderboards`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(leaderboardItem),
+		}).then((response) => {
+			console.log(response)
+		})
 	}, [])
 	return (
 		<Player>
 			<div className={styles['buttons-container']}>
 				<Link className={styles['leaderboards-link']} href='/leaderboards'>Leaderboards</Link>
-				<Link className={styles['start-link']} href=''>Restart</Link>
+				<Link className={styles['start-link']} href='https://vymsical-ld7swxof7-rohitashwin.vercel.app/' replace={true}>Restart</Link>
 			</div>
 		</Player>
 	)
