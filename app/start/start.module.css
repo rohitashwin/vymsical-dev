@@ -75,7 +75,7 @@
 	position: relative;
 	border-radius: 50%;
 	padding: 5px;
-	background-color: #58B760;
+	background-color: #58b760;
 }
 
 .leaderboard-button-container {
@@ -85,11 +85,82 @@
 	width: 70px;
 	position: relative;
 	border-radius: 50%;
-	background-color: #D261BF;
+	background-color: #d261bf;
 }
 
 .play-button-container:hover,
 .leaderboard-button-container:hover {
 	transform: scale(1.1);
 	transition: all 0.1s ease-in-out;
+}
+
+.go-container {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 3%;
+	color: white;
+}
+
+.name-form {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	padding: 20%;
+}
+
+.name-form-label {
+	font-size: 1.3rem;
+	font-weight: 600;
+	margin-bottom: 10px;
+	color: rgb(229, 229, 229);
+}
+
+.name-form-field {
+	width: 100%;
+	border-radius: 5px;
+	border: none;
+	outline: none;
+	padding: 7px;
+	font-family: inherit;
+	font-size: 1.3rem;
+	color: azure;
+	border: 3px solid #6e6e6e;
+	background: #4d4d4d;
+	margin-bottom: 10px;
+}
+
+.name-form-field:focus {
+	border: 3px solid #d3d3d3;
+}
+
+.name-form-button {
+	width: 60%;
+	border-radius: 5px;
+	margin: 0 auto;
+	border: none;
+	outline: none;
+	padding: 10px;
+	font-family: inherit;
+	font-size: 1.3rem;
+	color: azure;
+	background: rgba(88, 183, 96, 1);
+	cursor: pointer;
+	border-radius: 100px;
+}
+
+.link-button {
+	border: none;
+	background: none;
+	border-radius: 50%;
+}
+
+.link-button:hover {
+	cursor: pointer;
 }

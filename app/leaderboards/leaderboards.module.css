@@ -7,6 +7,61 @@
 
 .loader-text {
 	font-size: 1.5rem;
-	font-style: italic;
 	color: rgb(212, 212, 212);
+}
+
+.leaderboards-header {
+	padding-left: 10px;
+}
+
+.leaderboards-container {
+	width: 100%;
+	height: 100%;
+	color: rgb(212, 212, 212);
+	display: grid;
+	grid-template-rows: 1fr 9fr;
+	padding: 10px 15px;
+}
+
+.leaderboards-container > * {
+	/* border: 1px solid white; */
+}
+
+.leaderboards-table-container {
+	width: 100%;
+	height: 100%;
+	display: grid;
+	place-items: center;
+}
+
+/* make sure the table header are left aligned */
+.leaderboards-table {
+	width: 100%;
+	height: 100%;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr 9fr;
+	border: 3px solid #6e6e6e;
+	border-radius: 12px;
+	margin-bottom: 10px;
+	padding: 10px;
+	overflow: scroll;
+}
+
+.leaderboards-table-row {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr;
+}
+
+.leaderboards-table th {
+	text-align: left;
+	font-size: 1.5rem;
+	border-bottom: 3px solid #6e6e6e;
+}
+
+.leaderboards-table td {
+	text-align: left;
+	font-size: 1.3rem;
 }

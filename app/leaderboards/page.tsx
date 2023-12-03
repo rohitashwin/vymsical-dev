@@ -18,7 +18,6 @@ interface LeaderboardItem {
 	Score: number
 }
 
-/**** TODO: STYLE THE TABLE PROPERLY ****/
 const Leaderboards = ({ leaderboards }: { leaderboards: LeaderboardItem[] }) => {
 	return <>
 		<div className={styles['leaderboards-container']}>
@@ -26,19 +25,34 @@ const Leaderboards = ({ leaderboards }: { leaderboards: LeaderboardItem[] }) => 
 			<div className={styles['leaderboards-table-container']}>
 				<table className={styles['leaderboards-table']}>
 					<thead>
-						<tr>
+						<tr className={styles['leaderboards-table-row']}>
 							<th className={styles['leaderboards-table-header']}>Name</th>
 							<th className={styles['leaderboards-table-header']}>Score</th>
 						</tr>
 					</thead>
-					<tbody>
-						{leaderboards.map((item, index) => {
+					<tbody className={styles['leaderboards-table-body']}>
+						{/* {leaderboards.map((item, index) => {
 							return (
 								<tr key={index}>
 									<td className={styles['leaderboards-table-data']}>{item.Name}</td>
 									<td className={styles['leaderboards-table-data']}>{item.Score}</td>
 								</tr>
 							)
+						})} */}
+						{/* sort by score and then show the unique table rows */}
+						{leaderboards.sort((a, b) => {
+							return b.Score - a.Score;
+						}).map((item, index) => {
+							return (
+								<tr key={index} className={styles['leaderboards-table-row']}>
+									<td className={styles['leaderboards-table-data']}>{item.Name}</td>
+									<td className={styles['leaderboards-table-data']}>{item.Score}</td>
+								</tr>
+							)
+						}).filter((item, index, self) => {
+							return index === self.findIndex((t) => (
+								t.props.children[0].props.children === item.props.children[0].props.children
+							))
 						})}
 					</tbody>
 				</table>
@@ -68,7 +82,7 @@ export default function LeaderboardsPage() {
 	return <>
 		<Player>
 			<ReactPlaceholder customPlaceholder={<LoadingLeaderboards />} ready={ready}>
-				<></>
+				<Leaderboards leaderboards={leaderboards} />
 			</ReactPlaceholder>
 		</Player>
 	</>

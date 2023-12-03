@@ -54,9 +54,11 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
 	const { Name, Score } = await request.json();
+	console.log(Name, Score);
 	await connectDB();
 	const leaderboard = new Leaderboard({ Name, Score });
 	await leaderboard.save();
+	console.log('Leaderboard saved!');
 	await closeDB();
 	return new Response(JSON.stringify(leaderboard), {
 		headers: {
