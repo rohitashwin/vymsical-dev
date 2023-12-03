@@ -8,7 +8,7 @@ export default function Home() {
 		event.preventDefault();
 		const randIndex = Math.floor(Math.random() * 51);
 		console.log(randIndex);
-		fetch(`/api/leaderboards`, {
+		fetch(`/api/songs`, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json'
@@ -16,7 +16,14 @@ export default function Home() {
 		}).then((response) => {
 			return response.json();
 		}).then((data) => {
-			console.log(data);
+			const newObject: any = [];
+			data.forEach((song: any, index: number) => {
+				newObject.push({
+					...song,
+					Index: index
+				});
+			});
+			console.log(JSON.stringify(newObject));
 		});
 	}
   return <>
